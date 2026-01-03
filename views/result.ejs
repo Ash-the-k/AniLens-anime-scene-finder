@@ -1,0 +1,63 @@
+<%- include("partials/header", { title: "Result – AniLens" }) %>
+
+<main>
+    <% if (anime.bannerImage) { %>
+    <div>
+      <img src="<%= anime.bannerImage %>" alt="Anime Banner" width="100%" />
+    </div>
+    <% } %>
+
+    <h1>
+    <%= anime.titleRomaji || anime.titleEnglish || anime.titleNative %>
+    </h1>
+
+    <% if (anime.titleEnglish && anime.titleEnglish !== anime.titleRomaji) { %>
+    <p><em><%= anime.titleEnglish %></em></p>
+    <% } %>
+
+
+    <p><strong>Episode:</strong> <%= anime.episode %></p>
+    <p><strong>Similarity:</strong> <%= anime.similarity %>%</p>
+    <p><strong>Confidence:</strong> <%= anime.confidence %></p>
+
+    <% if (anime.coverImage) { %>
+    <div>
+      <img src="<%= anime.coverImage %>" alt="Cover Image" width="200" />
+    </div>
+    <% } %>
+
+    <h2>Comparison</h2>
+
+    <div>
+      <p><strong>Your Uploaded Image</strong></p>
+      <img src="<%= anime.uploadedImage %>" width="300" />
+    </div>
+
+    <div>
+      <p><strong>Matched Scene</strong></p>
+      <img src="<%= anime.previewImage %>" width="300" />
+    </div>
+
+    <% if (anime.video) { %>
+    <h2>Scene Clip</h2>
+    <video controls width="400">
+      <source src="<%= anime.video %>" type="video/mp4" />
+    </video>
+    <% } %>
+
+    <p>
+      <a href="<%= anime.anilistUrl %>" target="_blank"> View on AniList </a>
+    </p>
+
+    <form action="/cleanup" method="POST">
+      <input
+        type="hidden"
+        name="imagePath"
+        value="<%= anime.uploadedImage %>"
+      />
+      <button type="submit">Search another image</button>
+    </form>
+
+</main>
+
+<%- include("partials/footer") %>

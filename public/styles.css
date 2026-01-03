@@ -1,0 +1,28 @@
+.hidden {
+  display: none !important;
+}
+
+
+#modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#modalBox {
+  background: #111;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+#closeModal {
+  float: right;
+  cursor: pointer;
+}

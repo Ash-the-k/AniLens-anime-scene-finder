@@ -1,0 +1,75 @@
+<%- include("partials/header", { title: "About – AniLens" }) %>
+
+<main>
+
+  <section>
+    <h1>About AniLens</h1>
+    <p>
+      AniLens is an anime scene identification tool built to answer a simple
+      but common question:
+    </p>
+    <p>
+      <strong>“Which anime is this scene from?”</strong>
+    </p>
+    <p>
+      Given a screenshot or image URL, AniLens identifies the most likely
+      anime, episode, and exact scene where the image appears.
+    </p>
+  </section>
+
+  <section>
+    <h2>How AniLens Works</h2>
+    <p>
+      AniLens analyzes the visual content of an image and searches for matching
+      anime scenes using the <strong>trace.moe</strong> API.
+    </p>
+    <p>
+      When a match is found, additional information such as anime titles
+      (Romaji and English), episode number, and preview media are retrieved
+      using <strong>AniList</strong>.
+    </p>
+    <p>
+      Each result includes a confidence score, helping users understand how
+      closely the image matches the detected scene.
+    </p>
+  </section>
+
+  <section>
+    <h2>How to Use</h2>
+    <ul>
+      <li>Upload an anime screenshot, or</li>
+      <li>Paste a direct image URL</li>
+      <li>View the detected anime and episode</li>
+      <li>Compare your image with the matched scene</li>
+      <li>Watch a short preview clip from the detected moment</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Core Technologies</h2>
+    <ul>
+      <li><strong>Node.js</strong> – Server-side JavaScript runtime</li>
+      <li><strong>Express.js</strong> – Backend web framework</li>
+      <li><strong>EJS</strong> – Server-side templating</li>
+      <li><strong>Axios</strong> – HTTP client for API communication</li>
+      <li><strong>trace.moe API</strong> – Anime scene recognition</li>
+      <li><strong>AniList API</strong> – Anime metadata and titles</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>About the Developer</h2>
+    <p>
+      AniLens was built by <strong>Ashlesh</strong> as a practical exploration
+      into backend-driven web applications and API-based systems.
+    </p>
+    <p>
+      The project focuses on clean data flow, clear server-side logic,
+      and reliable integration with external services, rather than heavy
+      frontend frameworks or visual complexity.
+    </p>
+  </section>
+
+</main>
+
+<%- include("partials/footer") %>
