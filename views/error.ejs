@@ -1,0 +1,33 @@
+<%- include("partials/header", { title: "System Error – AniLens", page: "other" }) %>
+
+<main class="error-page">
+  <section class="result-card error-card">
+
+    <h2 class="error-title">⚠ System Interrupt</h2>
+
+    <p class="error-message">
+      <%= message || "An unexpected error occurred." %>
+    </p>
+
+    <% if (details) { %>
+      <p class="error-details">
+        <%= details %>
+      </p>
+    <% } %>
+
+    <div class="error-actions">
+      <a href="/" class="btn glass-btn">
+        <i class="ri-home-line"></i>
+        <span>Home</span>
+      </a>
+
+      <button onclick="window.location.reload()" class="btn glass-btn">
+        <i class="ri-refresh-line"></i>
+        <span>Retry</span>
+      </button>
+    </div>
+
+  </section>
+</main>
+
+<%- include("partials/footer") %>

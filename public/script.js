@@ -1,106 +1,130 @@
-// =========================
-// MODAL LOGIC
-// =========================
+/* =========================
+   SEARCH MODAL LOGIC
+========================= */
 
-// Grab modal elements
+// Elements
 const modal = document.getElementById("modalOverlay");
-const closeBtn = document.getElementById("closeModal");
-const navSearchBtn = document.getElementById("openSearch");       // Navbar button
-const resultSearchBtn = document.getElementById("resultSearchBtn"); // Result page button
+const closeModalBtn = document.getElementById("closeModal");
+const navSearchBtn = document.getElementById("openSearch");
+const resultSearchBtn = document.getElementById("resultSearchBtn");
 
-// Open modal
-const openModal = (e) => {
+/* ---------- Helpers ---------- */
+
+function isIndexPage() {
+  return document.body.dataset.page === "index";
+}
+
+function triggerIndexSearchGlow() {
+  const searchBox = document.querySelector(".index-search-box");
+  if (!searchBox) return;
+
+  searchBox.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // retrigger glow animation
+  searchBox.classList.remove("index-search-active");
+  void searchBox.offsetWidth; // force reflow
+  searchBox.classList.add("index-search-active");
+}
+
+function openModal() {
+  if (modal) modal.classList.add("is-open");
+}
+
+function closeModal() {
+  if (modal) modal.classList.remove("is-open");
+}
+
+/* ---------- Open Search ---------- */
+
+function handleSearchOpen(e) {
   if (e) e.preventDefault();
 
-  const isIndexPage = document.body.dataset.page === "index";
-
-  if (isIndexPage) {
-    const searchBox = document.querySelector(".index-search-box");
-    if (!searchBox) return;
-
-    searchBox.scrollIntoView({ behavior: "smooth", block: "center" });
-
-    searchBox.classList.remove("index-search-active");
-    void searchBox.offsetWidth; // force reflow
-    searchBox.classList.add("index-search-active");
-
-    return; // ⛔ DO NOT open modal on index
+  // Index page → glow search box
+  if (isIndexPage()) {
+    triggerIndexSearchGlow();
+    return;
   }
 
-  // ✅ ALL OTHER PAGES
-  if (modal) modal.classList.add("is-open");
-};
+  // Other pages → modal
+  openModal();
+}
 
-
-
-// Open from navbar
+// Navbar search
 if (navSearchBtn) {
-  navSearchBtn.addEventListener("click", openModal);
+  navSearchBtn.addEventListener("click", handleSearchOpen);
 }
 
-// Open from result page
+// Result page search
 if (resultSearchBtn) {
-  resultSearchBtn.addEventListener("click", openModal);
+  resultSearchBtn.addEventListener("click", handleSearchOpen);
 }
 
-// Close via close button
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    modal.classList.remove("is-open");
-  });
+/* ---------- Close Modal ---------- */
+
+// Close via X
+if (closeModalBtn) {
+  closeModalBtn.addEventListener("click", closeModal);
 }
 
-// Close when clicking outside modal box
+// Close by clicking overlay
 if (modal) {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
-      modal.classList.remove("is-open");
+      closeModal();
     }
   });
 }
 
-
-// =========================
-// SEARCH FORM TOGGLE LOGIC
-// =========================
+/* =========================
+   SEARCH FORM TOGGLE
+========================= */
 
 const btnUpload = document.getElementById("btn-upload");
 const btnUrl = document.getElementById("btn-url");
 const formUpload = document.getElementById("form-upload");
 const formUrl = document.getElementById("form-url");
+
+function activateUploadMode() {
+  formUpload.classList.remove("hidden");
+  formUrl.classList.add("hidden");
+
+  btnUpload.style.background = "var(--primary)";
+  btnUrl.style.background = "transparent";
+}
+
+function activateUrlMode() {
+  formUpload.classList.add("hidden");
+  formUrl.classList.remove("hidden");
+
+  btnUrl.style.background = "var(--primary)";
+  btnUpload.style.background = "transparent";
+}
+
+if (btnUpload && btnUrl && formUpload && formUrl) {
+  btnUpload.addEventListener("click", activateUploadMode);
+  btnUrl.addEventListener("click", activateUrlMode);
+}
+
+/* =========================
+   FILE NAME DISPLAY
+========================= */
+
 const fileInput = document.getElementById("fileInput");
 const fileNameDisplay = document.getElementById("fileName");
 
-// Toggle Upload / URL forms
-if (btnUpload && btnUrl && formUpload && formUrl) {
-  btnUpload.addEventListener("click", () => {
-    formUpload.classList.remove("hidden");
-    formUrl.classList.add("hidden");
+function updateFileName() {
+  if (!fileInput.files.length) {
+    fileNameDisplay.textContent = "";
+    fileNameDisplay.style.display = "none";
+    fileNameDisplay.style.marginTop = "0";
+    return;
+  }
 
-    btnUpload.style.background = "var(--primary)";
-    btnUrl.style.background = "transparent";
-  });
-
-  btnUrl.addEventListener("click", () => {
-    formUpload.classList.add("hidden");
-    formUrl.classList.remove("hidden");
-
-    btnUrl.style.background = "var(--primary)";
-    btnUpload.style.background = "transparent";
-  });
+  fileNameDisplay.textContent = fileInput.files[0].name;
+  fileNameDisplay.style.display = "block";
+  fileNameDisplay.style.marginTop = "10px";
 }
 
-// Show selected file name
 if (fileInput && fileNameDisplay) {
-  fileInput.addEventListener("change", () => {
-    if (fileInput.files.length > 0) {
-      fileNameDisplay.innerText = fileInput.files[0].name;
-      fileNameDisplay.style.display = "block";
-      fileNameDisplay.style.marginTop = "10px";
-    } else {
-      fileNameDisplay.innerText = "";
-      fileNameDisplay.style.display = "none";
-      fileNameDisplay.style.marginTop = "0";
-    }
-  });
+  fileInput.addEventListener("change", updateFileName);
 }
