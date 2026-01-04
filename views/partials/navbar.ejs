@@ -1,12 +1,22 @@
 <nav>
-  <h2>AniLens</h2>
+  <div style="display: flex; align-items: center;">
+    <a href="/" style="text-decoration: none; display: flex; align-items: center;">
+      <h2 style="color: #fff; margin: 0; font-weight: 800; letter-spacing: -0.5px;">
+        Ani<span style="color: var(--primary);">Lens</span>
+      </h2>
+    </a>
+  </div>
 
-  <a href="/">Home</a>
-  <a href="/about">About</a>
+  <div style="display: flex; align-items: center;">
+    <a href="/">Home</a>
+    <span class="gap"></span>
+    <a href="/about">About</a>
 
-  <% if (locals.showSearchButton !== false) { %>
-  <button id="openSearch">Search</button>
-  <% } %>
+
+    <span class="gap"></span>
+    <button id="openSearch" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+      <i class="ri-search-line"></i> Search
+    </button>
+
+  </div>
 </nav>
-
-<hr />

@@ -170,20 +170,6 @@ app.post("/search-url", async (req, res) => {
 });
 // ---------- URL SUBMISSION LOGIC [END] ----------
 
-app.post("/cleanup", (req, res) => {
-  const imagePath = "." + req.body.imagePath;
-
-  fs.unlink(imagePath, (err) => {
-    if (err) {
-      console.error("Cleanup failed:", err);
-    } else {
-      console.log("Uploaded image cleaned up");
-    }
-  });
-
-  res.redirect("/");
-});
-
 app.get("/about", (req, res) => {
   res.render("about.ejs");
 });

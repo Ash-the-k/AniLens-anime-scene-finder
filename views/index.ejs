@@ -1,11 +1,170 @@
-<%- include("partials/header", { title: "AniLens" }) %>
+<%- include("partials/header", { title: "AniLens", page: "index" }) %>
 
-<main>
-    <%- include("partials/search-form") %>
 
-    <%- include("partials/search-modal") %>
-    <script src="/script.js"></script>
+<main
+  style="
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2rem;
+  "
+>
+  <!-- background grid -->
+  <div
+    style="
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      opacity: 0.1;
+      background-image: linear-gradient(var(--glass-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+    "
+  ></div>
 
+  <!-- hero content -->
+  <div
+    style="
+      text-align: center;
+      margin-bottom: 2.4rem;
+      z-index: 1;
+      width: 100%;
+    "
+  >
+    <!-- system badge -->
+    <div
+      style="
+        display: inline-block;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        padding: 6px 16px;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+        background: rgba(139, 92, 246, 0.12);
+        font-family: monospace;
+      "
+    >
+      [ SYSTEM STATUS: ONLINE - READY TO ENGAGE ]
+    </div>
+
+    <!-- TITLE + GLOW -->
+    <div style="display: block; margin-bottom: 1.4rem;">
+      <div style="position: relative; display: inline-block;">
+        <!-- outer aura -->
+        <div
+          style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(
+              circle,
+              rgba(139, 92, 246, 0.35) 0%,
+              rgba(139, 92, 246, 0.18) 35%,
+              transparent 70%
+            );
+            filter: blur(70px);
+            z-index: -2;
+          "
+        ></div>
+
+        <!-- inner core -->
+        <div
+          style="
+            position: absolute;
+            inset: -35%;
+            background: var(--primary);
+            opacity: 0.12;
+            filter: blur(50px);
+            z-index: -1;
+          "
+        ></div>
+
+        <h1
+          style="
+            font-size: 3.6rem;
+            margin: 0;
+            line-height: 1.05;
+            color: white;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+          "
+        >
+          Ani<span style="color: var(--primary)">Lens</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- SYSTEM TEXT -->
+    <p
+      style="
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        max-width: 520px;
+        margin: 0 auto;
+        line-height: 1.55;
+      "
+    >
+      Visual recognition system active.  
+      Upload a frame to extract its
+      <span style="color:#fff;">Anime, Episode, and Timestamp</span>
+      from the archive.
+    </p>
+  </div>
+
+  <!-- SEARCH + GLOW -->
+  <div style="position: relative; width: 100%; max-width: 640px;">
+    <!-- form glow -->
+    <div
+      style="
+        position: absolute;
+        inset: -18%;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.22) 0%,
+          rgba(139, 92, 246, 0.10) 35%,
+          transparent 50%
+        );
+        filter: blur(60px);
+        z-index: -1;
+      "
+    ></div>
+
+    <%- include("partials/index-form") %>
+  </div>
+
+  <!-- meta -->
+  <div
+    style="
+      margin-top: 2.4rem;
+      display: flex;
+      gap: 2rem;
+      color: var(--text-muted);
+      font-family: monospace;
+      font-size: 0.75rem;
+      opacity: 0.6;
+      letter-spacing: 1px;
+    "
+  >
+    <span class="meta-stat">
+      <i class="ri-record-circle-line"></i>
+      <span class="meta-text">INDEXING 30,000+ SERIES</span>
+    </span>
+
+    <span class="meta-stat">
+      <i class="ri-record-circle-line"></i>
+      <span class="meta-text">TRACE.MOE × ANILIST SYNCED</span>
+    </span>
+
+  </div>
 </main>
 
 <%- include("partials/footer") %>

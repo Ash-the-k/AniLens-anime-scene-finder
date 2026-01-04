@@ -1,28 +1,885 @@
+/* =========================================
+   1. THEME VARIABLES & GLOBAL RESET
+   ========================================= */
+
+:root {
+  --bg-color: #020617; /* Slate 950 */
+  --card-bg: rgba(30, 41, 59, 0.4);
+  --bg-card-hover: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --primary: #8b5cf6; /* Violet */
+  --primary-glow: rgba(139, 92, 246, 0.5);
+  --accent: #06b6d4; /* Cyan */
+
+  --font-heading: "Outfit", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --radius: 12px;
+  --page-padding: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================
+   2. BASE DOCUMENT STYLES
+   ========================================= */
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-body);
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  min-height: 90vh;
+
+  margin: 0 auto;
+  padding: var(--page-padding);
+}
+
+
+/* =========================================
+   3. TYPOGRAPHY & TEXT UTILITIES
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, var(--text-muted));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+/* =========================================
+   4. LINKS
+   ========================================= */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary);
+  text-shadow: none;
+}
+
+
+/* =========================================
+   5. NAVBAR & FOOTER
+   ========================================= */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.2rem var(--page-padding);
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid var(--glass-border);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+nav a {
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+nav .gap {
+  margin-left: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+
+/* =========================================
+   6. BUTTONS & FORM INPUTS
+   ========================================= */
+
+button,
+.btn {
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+
+  color: var(--text-main);
+  padding: 0.8rem 1.5rem;
+
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button::before,
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 65%
+  );
+
+  opacity: 0.35;
+}
+
+button::after,
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.18) 0%,
+    rgba(139, 92, 246, 0.08) 35%,
+    transparent 60%
+  );
+
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+button:hover,
+.btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow:
+    inset 0 0 15px rgba(255, 255, 255, 0.08),
+    0 0 25px rgba(139, 92, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(1px) scale(0.97);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow:
+    inset 0 0 35px rgba(0, 0, 0, 0.55),
+    inset 0 0 10px rgba(255, 255, 255, 0.12),
+    0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.glass-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.toggle-btn {
+  flex: 1;
+}
+
+.btn-github-black {
+  background: #000;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1) !important;
+}
+
+.btn-github-black:hover {
+  background: #0a0a0a;
+  border-color: #3a3a3a;
+  transform: translateY(-2px);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.25) !important;
+}
+
+input[type="text"],
+input[type="file"] {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+
+/* =========================================
+   7. CARDS, SECTIONS & MEDIA
+   ========================================= */
+
+section,
+.glass-card,
+.result-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(139, 92, 246, 0.12),
+    rgba(2, 6, 23, 0.95) 70%
+  );
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(
+      circle at center,
+      rgba(139, 92, 246, 0.18),
+      rgba(2, 6, 23, 0.9) 65%
+    );
+
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+  background-blend-mode: overlay;
+
+  border: 2px dashed rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    inset 0 0 60px rgba(139, 92, 246, 0.15),
+    0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.result-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+
+.banner-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+img,
+video {
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  max-width: 100%;
+  display: block;
+}
+
+
+/* =========================================
+   8. MODAL SYSTEM
+   ========================================= */
+
+#modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(2, 6, 23, 0.4) 0%,
+    rgba(2, 6, 23, 0.75) 70%
+  );
+
+  backdrop-filter: blur(2px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+
+  z-index: 1000;
+}
+
+#modalOverlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#modalOverlay::after {
+  content: "";
+  position: absolute;
+  inset: -5%;
+  background: radial-gradient(
+    circle,
+    rgba(26, 18, 47, 0.28),
+    rgba(26, 18, 47, 0.14) 35%,
+    transparent 35%
+  );
+  filter: blur(5px);
+  z-index: -1;
+}
+
+.modal-backdrop {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+
+  display: flex;
+  align-items: stretch;
+  border-radius: 18px;
+
+  transform: scale(0.95) translateY(10px);
+  opacity: 0;
+
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+#modalOverlay.is-open .modal-backdrop {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.modal-backdrop > .result-card {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: var(--bg-color);
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+
+  opacity: 0.7;
+  z-index: -1;
+}
+
+#closeModal {
+  all: unset;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  padding: 6px;
+  line-height: 1;
+
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  z-index: 10;
+
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 🔥 THIS is what finally removes the glass */
+#closeModal::before,
+#closeModal::after {
+  content: none !important;
+  display: none !important;
+}
+
+#closeModal > i {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#closeModal:hover > i {
+  transform: scale(1.35);
+  color: #fff;
+}
+
+
+#closeModal > i {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#closeModal:hover > i {
+  transform: scale(2);
+  color: #fff;
+}
+
+
+
+
+/* =========================================
+   9. UPLOAD DROPZONE
+   ========================================= */
+
+.upload-dropzone {
+  position: relative;
+  border: 2px dashed var(--glass-border);
+  padding: 40px 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.upload-dropzone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  color: var(--text-muted);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.upload-text {
+  margin-top: 10px;
+  color: var(--text-muted);
+  transition: color 0.25s ease;
+}
+
+.upload-dropzone:hover {
+  border-color: var(--glass-border);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.47);
+}
+
+.upload-dropzone:hover .upload-icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.upload-dropzone:hover .upload-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* =========================================
+   10. META UI (PILLS, STATS)
+   ========================================= */
+
+.result-meta {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  line-height: 1;
+  background-clip: padding-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.meta-episode {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-weight: 600;
+}
+
+.meta-match {
+  background: rgba(139, 92, 246, 0.32);
+  color: #fff;
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  font-weight: 600;
+}
+
+.meta-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.meta-stat i {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 0.15em;
+}
+
+.meta-text {
+  line-height: 1.35;
+}
+
+
+/* =========================================
+   11. ABOUT PAGE & GRIDS
+   ========================================= */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.tech-card {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  background: var(--bg-card-hover);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tech-icon-box {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin-right: 1rem;
+  color: var(--primary);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.tech-info h4 {
+  margin-bottom: 2px;
+  text-align: left;
+}
+
+.tech-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.warning-box {
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: #fcd34d;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(5px);
+}
+
+.warning-icon {
+  font-size: 1.5rem;
+  color: #fcd34d;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+
+/* =========================================
+   12. MEDIA LINK CARD
+   ========================================= */
+
+.media-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 2rem;
+
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.media-link-card:hover {
+  background: rgba(0, 0, 0, 0.165);
+  box-shadow: inset 0 0 30px 3px rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.105);
+  transform: translateY(2px);
+}
+
+.media-arrow {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+  padding-right: 1rem;
+}
+
+.media-link-card:hover .media-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  transform: translateX(5px);
+}
+
+.media-poster {
+  width: 70px;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.media-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+/* =========================================
+   13. STATE HELPERS
+   ========================================= */
+
 .hidden {
   display: none !important;
 }
 
 
-#modalOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+/* =========================================
+   14. INDEX SEARCH GLOW
+   ========================================= */
+
+.index-search-active input,
+.index-search-active button,
+.index-search-active form div[style*="dashed"],
+.index-search-active form > div {
+  animation: elementGlow 1.4s ease-out;
 }
 
-#modalBox {
-  background: #111;
-  color: white;
-  padding: 20px;
-  border-radius: 8px;
-  min-width: 300px;
+@keyframes elementGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    border-color: rgba(139, 92, 246, 0.4);
+  }
+  35% {
+    box-shadow:
+      0 0 25px rgba(139, 92, 246, 0.45),
+      0 0 60px rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    border-color: inherit;
+  }
 }
 
-#closeModal {
-  float: right;
-  cursor: pointer;
+.index-search-active input { animation-delay: 0s; }
+.index-search-active form > div { animation-delay: 0.1s; }
+.index-search-active button { animation-delay: 0.2s; }
+
+
+/* =========================================
+   15. RESPONSIVE OVERRIDES
+   ========================================= */
+
+.banner-cover-mobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+
+  main {
+    padding: 1rem;
+  }
+
+  .banner-card {
+    padding: 2rem 1rem !important;
+  }
+
+  .banner-card h1 {
+    font-size: 1.9rem;
+    line-height: 1.15;
+  }
+
+  .banner-card p {
+    font-size: 0.95rem !important;
+  }
+
+  .banner-card > div {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  main > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem;
+  }
+
+  .result-card {
+    padding: 1.25rem !important;
+    border-radius: 14px;
+  }
+
+  .media-link-card {
+    gap: 1rem;
+  }
+
+  .media-arrow {
+    display: none;
+  }
+
+  .banner-cover-mobile {
+    display: block;
+    margin: 1.2rem auto 1rem;
+    width: 140px;
+  }
+
+  .banner-cover-mobile img {
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  }
+
+  .about-hero {
+    margin-bottom: 1.6rem !important;
+  }
+
+  .about-hero p {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .about-hero i {
+    font-size: 0.8em;
+    vertical-align: top;
+  }
+
+  #resultSearchBtn {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
 }

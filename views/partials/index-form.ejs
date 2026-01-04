@@ -1,0 +1,43 @@
+<div id="searchBox" class="index-search-box" style="border: none; box-shadow: none; background: transparent; padding: 0;">
+  
+  <h3 style="text-align: center; margin-bottom: 1.5rem;">Identify Scene</h3>
+
+  <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+      <button type="button" id="btn-upload" style="background: var(--primary); flex: 1; font-size: 0.9rem;">
+        <i class="ri-image-add-line"></i> Upload Image
+      </button>
+      <button type="button" id="btn-url" style="background: transparent; border-color: var(--glass-border); flex: 1; font-size: 0.9rem;">
+        <i class="ri-link-m"></i> Paste URL
+      </button>
+  </div>
+
+  <form id="form-upload" action="/upload" method="POST" enctype="multipart/form-data">
+<div class="upload-dropzone">
+  <i class="ri-upload-cloud-2-line upload-icon"></i>
+  <p class="upload-text">Click to select an image</p>
+
+  <input
+    type="file"
+    id="fileInput"
+    name="animeImage"
+    required
+  />
+</div>
+
+
+    
+    <p id="fileName" style="text-align: center; font-size: 0.9rem; margin-bottom: 10px; color: var(--accent); min-height: 20px;"></p>
+
+    <button type="submit" style="width: 100%;">
+      <i class="ri-search-eye-line"></i> Search Image
+    </button>
+  </form>
+
+  <form id="form-url" action="/search-url" method="POST" class="hidden">
+    <input type="text" name="imageUrl" placeholder="https://example.com/anime-screenshot.jpg" required />
+    <button type="submit" style="width: 100%;">
+      <i class="ri-earth-line"></i> Search URL
+    </button>
+  </form>
+
+</div>

@@ -1,63 +1,169 @@
-<%- include("partials/header", { title: "Result – AniLens" }) %>
+<%- include("partials/header", { title: "AniLens", page: "other" }) %>
 
 <main>
+  <section
+    class="banner-card"
+    style="
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 1rem;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+    "
+  >
     <% if (anime.bannerImage) { %>
-    <div>
-      <img src="<%= anime.bannerImage %>" alt="Anime Banner" width="100%" />
+    <div style="position: absolute; inset: 0; z-index: -1; opacity: 0.3">
+      <img
+        src="<%= anime.bannerImage %>"
+        style="width: 100%; height: 100%; object-fit: cover"
+      />
+
+      <!-- vignette overlay -->
+      <div
+        style="
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(
+            circle at center,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 0.35) 75%,
+            rgba(0, 0, 0, 0.8) 100%
+          );
+        "
+      ></div>
     </div>
+
     <% } %>
 
-    <h1>
-    <%= anime.titleRomaji || anime.titleEnglish || anime.titleNative %>
-    </h1>
-
-    <% if (anime.titleEnglish && anime.titleEnglish !== anime.titleRomaji) { %>
-    <p><em><%= anime.titleEnglish %></em></p>
-    <% } %>
-
-
-    <p><strong>Episode:</strong> <%= anime.episode %></p>
-    <p><strong>Similarity:</strong> <%= anime.similarity %>%</p>
-    <p><strong>Confidence:</strong> <%= anime.confidence %></p>
-
+    <h1><%= anime.titleEnglish || anime.titleRomaji %></h1>
+    <p style="font-size: 1.2rem; color: var(--primary)">
+      <%= anime.titleNative %>
+    </p>
     <% if (anime.coverImage) { %>
-    <div>
-      <img src="<%= anime.coverImage %>" alt="Cover Image" width="200" />
+    <div class="banner-cover-mobile">
+      <img src="<%= anime.coverImage %>" alt="Cover image" />
     </div>
     <% } %>
 
-    <h2>Comparison</h2>
+    <div class="result-meta">
+      <span class="meta-pill meta-episode"> Episode <%= anime.episode %> </span>
+      <span class="meta-pill meta-match">
+        <%= Math.round(anime.similarity) %>% Match
+      </span>
+    </div>
+  </section>
 
-    <div>
-      <p><strong>Your Uploaded Image</strong></p>
-      <img src="<%= anime.uploadedImage %>" width="300" />
+  <div
+    style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    "
+  >
+    <div
+      class="result-card"
+      style="margin-bottom: 0; box-shadow: 0 0 30px rgba(139, 92, 246, 0.2)"
+    >
+      <h3>Your Upload</h3>
+      <img
+        src="<%= anime.uploadedImage %>"
+        style="
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16/9;
+          object-fit: cover;
+          box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        "
+      />
     </div>
 
-    <div>
-      <p><strong>Matched Scene</strong></p>
-      <img src="<%= anime.previewImage %>" width="300" />
+    <div
+      class="result-card"
+      style="margin-bottom: 0; box-shadow: 0 0 30px rgba(139, 92, 246, 0.2)"
+    >
+      <h3>Matched Scene</h3>
+      <img
+        src="<%= anime.previewImage %>"
+        style="
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16/9;
+          object-fit: cover;
+          box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        "
+      />
     </div>
+  </div>
 
-    <% if (anime.video) { %>
-    <h2>Scene Clip</h2>
-    <video controls width="400">
+  <% if (anime.video) { %>
+  <section
+    class="result-card"
+    style="text-align: center; box-shadow: 0 0 30px rgba(139, 92, 246, 0.2)"
+  >
+    <h3 style="margin-top: 0"><i class="ri-movie-line"></i> Scene Preview</h3>
+    <video
+      controls
+      style="
+        width: 100%;
+        max-width: 800px;
+        margin: 1rem auto;
+        display: block;
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+      "
+    >
       <source src="<%= anime.video %>" type="video/mp4" />
     </video>
+  </section>
+  <% } %>
+
+  <a
+    href="<%= anime.anilistUrl %>"
+    target="_blank"
+    class="media-link-card"
+    style="margin-top: 0"
+  >
+    <% if (anime.coverImage) { %>
+    <img src="<%= anime.coverImage %>" class="media-poster" alt="Cover" />
+    <% } else { %>
+    <div
+      class="media-poster"
+      style="
+        background: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <i class="ri-image-line" style="font-size: 1.5rem; color: #666"></i>
+    </div>
     <% } %>
 
-    <p>
-      <a href="<%= anime.anilistUrl %>" target="_blank"> View on AniList </a>
-    </p>
+    <div class="media-content">
+      <h4 class="media-title">View on AniList</h4>
+      <p class="media-desc">
+        Check character details, ratings, and streaming info.
+      </p>
+    </div>
 
-    <form action="/cleanup" method="POST">
-      <input
-        type="hidden"
-        name="imagePath"
-        value="<%= anime.uploadedImage %>"
-      />
-      <button type="submit">Search another image</button>
-    </form>
+    <i class="ri-arrow-right-line media-arrow"></i>
+  </a>
+  
 
+  <div style="margin-top: 1.5rem; text-align: center">
+    <button
+      id="resultSearchBtn"
+      style="
+        width: 100%;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid var(--glass-border);
+      "
+    >
+      <i class="ri-search-eye-line"></i> Search Another Scene
+    </button>
+  </div>
 </main>
 
 <%- include("partials/footer") %>

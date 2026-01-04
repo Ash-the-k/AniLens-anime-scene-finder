@@ -1,15 +1,7 @@
-<div id="searchBox">
-  <h3>Search Anime Scene</h3>
+<div class="result-card">
+  <button id="closeModal">
+    <i class="ri-close-line" style="font-size: 1.5rem"></i>
+  </button>
 
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="animeImage" />
-    <button type="submit">Search by Upload</button>
-  </form>
-
-  <br>
-
-  <form action="/search-url" method="POST">
-    <input type="text" name="imageUrl" placeholder="Paste image URL" />
-    <button type="submit">Search by URL</button>
-  </form>
+  <%- include("index-form") %>
 </div>

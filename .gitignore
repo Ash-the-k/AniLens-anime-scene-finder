@@ -23,4 +23,4 @@ yarn-error.log*
 coverage/
 dist/
 
-
+dump_project_to_txt.py

@@ -1,74 +1,183 @@
-<%- include("partials/header", { title: "About – AniLens" }) %>
+<%- include("partials/header", { title: "About – AniLens", page: "about" }) %>
 
 <main>
+  <div class="about-hero" style="text-align: center; margin-bottom: 3rem; position: relative">
+    <div
+      style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        background: var(--primary);
+        filter: blur(120px);
+        opacity: 0.2;
+        z-index: -1;
+      "
+    ></div>
+
+    <h1 style="font-size: 4rem; margin-bottom: 1rem;">
+      <span style="color: rgb(255, 255, 255); font-size: 2rem; margin-right: 10px;">About</span>
+      
+      <span style="color: #ffffff;">Ani</span><span style="color: var(--primary);">Lens</span>
+    </h1>
+
+    <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9">
+      <i class="ri-double-quotes-l"></i> The ultimate tool to find the
+      <strong>One Piece</strong>. <i class="ri-double-quotes-r"></i>
+    </p>
+  </div>
+
+  <div class="glass-card" style="margin-bottom: 2rem;">
+    <h2 style="margin-bottom: 1rem;">
+      <i class="ri-lightbulb-flash-line" style="color: var(--primary);"></i> The Mission
+    </h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+      AniLens was built to answer the eternal question: <strong>"What anime is this from?"</strong>
+    </p>
+    <p style="margin-bottom: 0;">
+      Think of it as a <em>PokeDex</em> for <strong>Anime Screenshots</strong>. It uses <em>Shinigami Eyes</em> to scan the image via <strong>trace.moe</strong> and instantly write the name from <strong>AniList</strong>. Stop struggling like an <em>E-Rank Hunter</em> in the comments just to find the anime title.
+    </p>
+  </div>
+
+  <div class="warning-box">
+    <i class="ri-alert-line warning-icon"></i>
+    <div>
+      <h4 style="color: #fcd34d; margin-top: 0; font-size: 1.1rem;">Limitations (Binding Vows)</h4>
+      <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0.5rem;">
+        To ensure the technique works, you must respect the rules:
+      </p>
+      <ul style="color: rgba(255,255,255,0.7); font-size: 0.9rem; padding-left: 1.2rem; margin: 0;">
+        <li style="margin-bottom: 0.5rem;">
+          <strong>Raw Anime Screenshots Only:</strong> The algorithm matches exact frames. It cannot detect <strong>Fan Art</strong>, <strong>Doujinshi</strong>, or <strong>Memes</strong> (the system cannot see through <em>Genjutsu</em>).
+        </li>
+        <li style="margin-bottom: 0.5rem;">
+          <strong>No Cropping:</strong> Images must be <strong>uncropped</strong>. A cut-off image is like an incomplete <em>Domain Expansion</em>—the search won't activate properly.
+        </li>
+        <li>
+          <strong>Visual Clarity:</strong> Results depend on distinctiveness. Even <em>Saitama</em> misses a mosquito sometimes (it's not 100% perfect).
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <section>
-    <h1>About AniLens</h1>
-    <p>
-      AniLens is an anime scene identification tool built to answer a simple
-      but common question:
-    </p>
-    <p>
-      <strong>“Which anime is this scene from?”</strong>
-    </p>
-    <p>
-      Given a screenshot or image URL, AniLens identifies the most likely
-      anime, episode, and exact scene where the image appears.
-    </p>
+    <h2 style="margin-bottom: 1.5rem;">
+      <i class="ri-sword-line" style="color: var(--primary);"></i> Skill Tree
+    </h2>
+    
+    <div class="tech-grid">
+      
+      <a href="https://nodejs.org/" target="_blank" class="tech-card" style="text-decoration: none; color: inherit;">
+        <div class="tech-icon-box">
+           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.5l6 3.75v7.5L12 19.5l-6-3.75V8.25L12 4.5z" fill="none"/><path d="M12 2l-8 5v10l8 5 8-5V7z" fill="currentColor"/></svg>
+        </div>
+        <div class="tech-info">
+          <h4>Node.js</h4>
+          <p>Runtime Environment — <em>The Chakra</em></p>
+        </div>
+      </a>
+
+      <a href="https://expressjs.com/" target="_blank" class="tech-card" style="text-decoration: none; color: inherit;">
+        <div class="tech-icon-box">
+          <i class="ri-server-fill"></i>
+        </div>
+        <div class="tech-info">
+          <h4>Express.js</h4>
+          <p>Web Framework — <em>The Backbone</em></p>
+        </div>
+      </a>
+
+      <a href="https://ejs.co/" target="_blank" class="tech-card" style="text-decoration: none; color: inherit;">
+        <div class="tech-icon-box">
+          <i class="ri-code-s-slash-line"></i>
+        </div>
+        <div class="tech-info">
+          <h4>EJS</h4>
+          <p>Templating Engine — <em>Visual Jutsu</em></p>
+        </div>
+      </a>
+
+      <a href="https://axios-http.com/" target="_blank" class="tech-card" style="text-decoration: none; color: inherit;">
+        <div class="tech-icon-box">
+          <i class="ri-global-line"></i>
+        </div>
+        <div class="tech-info">
+          <h4>Axios</h4>
+          <p>API Integration — <em>Instant Transmission</em></p>
+        </div>
+      </a>
+
+      <a href="https://soruly.github.io/trace.moe-api/#/" target="_blank" class="tech-card" style="text-decoration: none; color: inherit;">
+        <div class="tech-icon-box">
+          <i class="ri-search-eye-line"></i>
+        </div>
+        <div class="tech-info">
+          <h4>trace.moe</h4>
+          <p>Computer Vision API — <em>The Six Eyes</em></p>
+        </div>
+      </a>
+
+      <a href="https://anilist.co" target="_blank" class="tech-card" style="text-decoration: none; color: inherit;">
+        <div class="tech-icon-box">
+          <i class="ri-movie-2-line"></i>
+        </div>
+        <div class="tech-info">
+          <h4>AniList</h4>
+          <p>Metadata Provider — <em>The System</em></p>
+        </div>
+      </a>
+
+    </div>
   </section>
 
-  <section>
-    <h2>How AniLens Works</h2>
-    <p>
-      AniLens analyzes the visual content of an image and searches for matching
-      anime scenes using the <strong>trace.moe</strong> API.
-    </p>
-    <p>
-      When a match is found, additional information such as anime titles
-      (Romaji and English), episode number, and preview media are retrieved
-      using <strong>AniList</strong>.
-    </p>
-    <p>
-      Each result includes a confidence score, helping users understand how
-      closely the image matches the detected scene.
-    </p>
-  </section>
+  <div class="grid-2">
+    
+    <div class="glass-card">
+      <h2 style="margin-top: 0; margin-bottom: 1rem">
+        <i class="ri-user-star-line" style="color: var(--primary)"></i> The Developer
+      </h2>
+      <p style="font-size: 1.05rem; margin-bottom: 1rem">
+        Built by <strong>Ashlesh, </strong> <span style="opacity: 0.7; font-size: 0.95rem;"> The Backend Sorcerer</span>
+      </p>
+      <p style="font-size: 1rem; color: var(--text-muted); margin: 0">
+        "I'm gonna be King of the... Backend Developers!" <br />
+        <span style="font-size: 0.9rem; opacity: 0.7"
+          >(Current Bounty: 500 Berries — Still in Training Arc)</span
+        >
+      </p>
+      <p style="font-size: 1rem; color: var(--text-muted); margin-top: 1rem">
+        This is my <strong>Ninja Way</strong>: Clean architecture, Server-Side
+        Rendering, and no bloated client-side frameworks.
+      </p>
+    </div>
+    
+    <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center;">
+      <h2 style="margin-top: 0; margin-bottom: 1rem;">
+        <i class="ri-ship-line" style="color: var(--primary);"></i> Join the Crew
+      </h2>
+      <p style="font-size: 1rem; margin-bottom: 1.5rem;">
+        The <strong>Grand Line</strong> (Source Code) is open. Whether you want to fork, star, or contribute—you are welcome aboard the ship.
+      </p>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        
+        <a href="https://github.com/Ash-the-k/AniLens-anime-scene-finder" target="_blank" style="flex: 1;">
+          <button class="btn-github-black" style="width: 100%; justify-content: center;">
+            <i class="ri-github-line" style="font-size: 1.2rem;"></i> Repository
+          </button>
+        </a>
+        
+        <a href="https://github.com/Ash-the-k" target="_blank" style="flex: 1;">
+          <button class="btn-github-black" style="width: 100%; justify-content: center;">
+            <i class="ri-user-3-line" style="font-size: 1.2rem;"></i> Profile
+          </button>
+        </a>
 
-  <section>
-    <h2>How to Use</h2>
-    <ul>
-      <li>Upload an anime screenshot, or</li>
-      <li>Paste a direct image URL</li>
-      <li>View the detected anime and episode</li>
-      <li>Compare your image with the matched scene</li>
-      <li>Watch a short preview clip from the detected moment</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Core Technologies</h2>
-    <ul>
-      <li><strong>Node.js</strong> – Server-side JavaScript runtime</li>
-      <li><strong>Express.js</strong> – Backend web framework</li>
-      <li><strong>EJS</strong> – Server-side templating</li>
-      <li><strong>Axios</strong> – HTTP client for API communication</li>
-      <li><strong>trace.moe API</strong> – Anime scene recognition</li>
-      <li><strong>AniList API</strong> – Anime metadata and titles</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>About the Developer</h2>
-    <p>
-      AniLens was built by <strong>Ashlesh</strong> as a practical exploration
-      into backend-driven web applications and API-based systems.
-    </p>
-    <p>
-      The project focuses on clean data flow, clear server-side logic,
-      and reliable integration with external services, rather than heavy
-      frontend frameworks or visual complexity.
-    </p>
-  </section>
+      </div>
+    </div>
+  </div>
 
 </main>
 
