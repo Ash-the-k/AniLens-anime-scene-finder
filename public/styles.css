@@ -172,6 +172,25 @@ footer {
   margin-top: auto;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 36px;        /* desktop default */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border: none;
+}
+
+@media (max-width: 600px) {
+  .navbar-logo img {
+    height: 28px;
+  }
+}
+
 
 /* =========================================
    6. BUTTONS & FORM INPUTS
