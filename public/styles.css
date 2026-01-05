@@ -222,6 +222,15 @@ button,
   transition: all 0.25s ease;
 }
 
+#btn-upload,
+#btn-url {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
 button::before,
 .btn::before {
   content: "";
@@ -416,7 +425,7 @@ video {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.15s ease;
 
   z-index: 1000;
 }
@@ -904,6 +913,39 @@ video {
     padding: 0.8rem 1rem;
     font-size: 0.9rem;
   }
+
+  /* Overlay aligns to bottom */
+  #modalOverlay {
+    align-items: flex-end;
+  }
+
+  /* Turn the BACKDROP into a bottom sheet */
+  .modal-backdrop {
+    max-width: 100%;
+    width: 100%;
+
+    border-radius: 16px 16px 0 0;
+
+    transform: translateY(100%);
+    opacity: 1; /* important: visibility controlled by transform now */
+  }
+
+  /* When open → slide up */
+  #modalOverlay.is-open .modal-backdrop {
+    transform: translateY(0);
+  }
+
+  /* Card follows the backdrop */
+  .modal-backdrop > .result-card {
+    padding: 1.25rem;
+    border-radius: 16px 16px 0 0;
+  }
+
+  #btn-upload,
+  #btn-url {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.7rem;
+  }
 }
 
 
@@ -996,4 +1038,3 @@ video {
 
   filter: blur(120px);
 }
-
