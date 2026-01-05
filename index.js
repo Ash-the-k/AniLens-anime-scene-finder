@@ -21,6 +21,10 @@ app.use("/uploads", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
+
 // ---------- MULTER SETUP ----------
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
